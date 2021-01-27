@@ -7,9 +7,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 using DattingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DattingApp.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase
@@ -28,7 +30,7 @@ namespace DattingApp.API.Controllers
            return Ok(values);
         }
 
-        
+        [AllowAnonymous]
          [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
